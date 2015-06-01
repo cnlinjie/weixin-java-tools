@@ -2,7 +2,9 @@ package me.chanjar.weixin.mp.api;
 
 import me.chanjar.weixin.common.bean.WxMenu;
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
+import me.chanjar.weixin.common.bean.result.WxMediaPersistenceUploadResult;
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
+import me.chanjar.weixin.common.bean.upload.AddMpMassVideo;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.mp.bean.*;
@@ -92,6 +94,44 @@ public interface WxMpService {
    */
   public WxJsapiSignature createJsapiSignature(String url) throws WxErrorException;
 
+
+  /**
+   * <pre>
+   * 上传永久素材
+   * 上传的多媒体文件有格式和大小限制，如下：
+   *   图片（image）: 1M，支持JPG格式
+   *   语音（voice）：2M，播放长度不超过60s，支持AMR\MP3格式
+   *   缩略图（thumb）：64KB，支持JPG格式
+   *   视频和图文需要其他字段，所以请使用其他方法
+   * </pre>
+   * @param mediaType
+   * @param fileType
+   * @param inputStream
+   * @return
+   * @throws WxErrorException
+   * @throws IOException
+   */
+  public WxMediaPersistenceUploadResult mediaPersistenceUpload(String mediaType, String fileType, InputStream inputStream) throws WxErrorException, IOException;
+
+
+  /**
+   * <pre>
+   * 上传永久素材
+   * 上传的多媒体文件有格式和大小限制，如下：
+   *   图片（image）: 1M，支持JPG格式
+   *   语音（voice）：2M，播放长度不超过60s，支持AMR\MP3格式
+   *   缩略图（thumb）：64KB，支持JPG格式
+   *   视频和图文需要其他字段，所以请使用其他方法
+   * </pre>
+   * @param mediaType
+   * @param file
+   * @return
+   * @throws WxErrorException
+   */
+  public WxMediaPersistenceUploadResult mediaPersistenceUpload(String mediaType, File file) throws WxErrorException;
+
+
+
   /**
    * <pre>
    * 上传多媒体文件
@@ -140,7 +180,17 @@ public interface WxMpService {
    * @throws WxErrorException
    */
   public void customMessageSend(WxMpCustomMessage message) throws WxErrorException;
-  
+
+  /**
+   * <pre>
+   *     上传永久图文消息
+   * </pre>
+   * @param news
+   * @return
+   * @throws WxErrorException
+   */
+  public WxMediaPersistenceUploadResult massNewsPersistenceUpload(WxMpMassPersistenceNews news) throws WxErrorException;
+
   /**
    * <pre>
    * 上传群发用的图文消息，上传后才能群发图文消息 
@@ -153,7 +203,18 @@ public interface WxMpService {
    * @see #massOpenIdsMessageSend(me.chanjar.weixin.mp.bean.WxMpMassOpenIdsMessage)
    */
   public WxMpMassUploadResult massNewsUpload(WxMpMassNews news) throws WxErrorException;
-  
+
+
+  /**
+   * <pre>
+   *     上传视频素材
+   * </pre>
+   * @param video
+   * @return
+   * @throws WxErrorException
+   */
+  public WxMediaPersistenceUploadResult massPersistenceVideoUpload(AddMpMassVideo video) throws WxErrorException;
+
   /**
    * <pre>
    * 上传群发用的视频，上传后才能群发视频消息
