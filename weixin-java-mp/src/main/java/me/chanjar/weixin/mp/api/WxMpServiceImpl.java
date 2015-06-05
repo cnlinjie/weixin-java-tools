@@ -217,6 +217,14 @@ public class WxMpServiceImpl implements WxMpService {
         return execute(new MediaPersistenceUploadRequestExecutor(), url, file);
     }
 
+    @Override
+    public String mediaDelete(String mediaId) throws WxErrorException {
+        String url = "https://api.weixin.qq.com/cgi-bin/material/del_material";
+        JsonObject json = new JsonObject();
+        json.addProperty("media_id", mediaId);
+        return execute(new SimplePostRequestExecutor(), url, json.toString());
+    }
+
     public WxMediaUploadResult mediaUpload(String mediaType, String fileType, InputStream inputStream) throws WxErrorException, IOException {
         return mediaUpload(mediaType, FileUtils.createTmpFile(inputStream, UUID.randomUUID().toString(), fileType));
     }
@@ -237,6 +245,12 @@ public class WxMpServiceImpl implements WxMpService {
         String responseContent = execute(new SimplePostRequestExecutor(), url, news.toJson());
         return WxMediaPersistenceUploadResult.fromJson(responseContent);
 
+    }
+
+    @Override
+    public String massNewsPersistenceUpdate(WxMpMassPersistenceNewsUpdate news) throws WxErrorException {
+        String url = "https://api.weixin.qq.com/cgi-bin/material/update_news";
+        return execute(new SimplePostRequestExecutor(), url, news.toJson());
     }
 
 

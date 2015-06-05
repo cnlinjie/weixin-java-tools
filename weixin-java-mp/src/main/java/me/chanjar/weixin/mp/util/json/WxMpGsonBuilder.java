@@ -14,6 +14,7 @@ public class WxMpGsonBuilder {
     INSTANCE.registerTypeAdapter(WxMpCustomMessage.class, new WxMpCustomMessageGsonAdapter());
     INSTANCE.registerTypeAdapter(WxMpMassNews.class, new WxMpMassNewsGsonAdapter());
     INSTANCE.registerTypeAdapter(WxMpMassPersistenceNews.class, new WxMpMassPersistenceNewsGsonAdapter());
+    INSTANCE.registerTypeAdapter(WxMpMassPersistenceNewsUpdate.class, new WxMpMassPersistenceNewsUpdateGsonAdapter());
     INSTANCE.registerTypeAdapter(WxMpMassGroupMessage.class, new WxMpMassGroupMessageGsonAdapter());
     INSTANCE.registerTypeAdapter(WxMpMassOpenIdsMessage.class, new WxMpMassOpenIdsMessageGsonAdapter());
     INSTANCE.registerTypeAdapter(WxMpGroup.class, new WxMpGroupGsonAdapter());

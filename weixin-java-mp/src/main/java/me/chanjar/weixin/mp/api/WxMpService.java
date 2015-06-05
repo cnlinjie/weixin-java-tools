@@ -131,6 +131,15 @@ public interface WxMpService {
   public WxMediaPersistenceUploadResult mediaPersistenceUpload(String mediaType, File file) throws WxErrorException;
 
 
+  /**
+   * 删除永久素材
+   * @param mediaId 媒体ID
+   * @return
+   * @throws WxErrorException
+   */
+  public String mediaDelete(String mediaId) throws WxErrorException;
+
+
 
   /**
    * <pre>
@@ -190,6 +199,18 @@ public interface WxMpService {
    * @throws WxErrorException
    */
   public WxMediaPersistenceUploadResult massNewsPersistenceUpload(WxMpMassPersistenceNews news) throws WxErrorException;
+
+  /**
+   * <pre>
+   *     更新图文消息
+   * </pre>
+   * @param news
+   * @return
+   * @throws WxErrorException
+   */
+  public String massNewsPersistenceUpdate(WxMpMassPersistenceNewsUpdate news) throws WxErrorException;
+
+
 
   /**
    * <pre>

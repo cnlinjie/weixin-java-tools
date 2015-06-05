@@ -72,6 +72,8 @@ public class WxMpMassMessageAPITest {
   
   @Test(dataProvider="massMessages")
   public void testMediaMassGroupMessageSend(String massMsgType, String mediaId) throws WxErrorException, IOException {
+
+
     WxMpMassGroupMessage massMessage = new WxMpMassGroupMessage();
     massMessage.setMsgtype(massMsgType);
     massMessage.setMediaId(mediaId);
@@ -80,8 +82,22 @@ public class WxMpMassMessageAPITest {
     WxMpMassSendResult massResult = wxService.massGroupMessageSend(massMessage);
     Assert.assertNotNull(massResult);
     Assert.assertNotNull(massResult.getMsgId());
+
+
   }
-  
+
+
+
+  @Test
+  public void testWxMediaPersistenceUpload() {
+    ApiTestModule.WxXmlMpInMemoryConfigStorage configProvider = (ApiTestModule.WxXmlMpInMemoryConfigStorage) wxService.wxMpConfigStorage;
+    System.out.println("------");
+
+
+
+  }
+
+
   @DataProvider
   public Object[][] massMessages() throws WxErrorException, IOException {
     Object[][] messages = new Object[4][];

@@ -28,8 +28,14 @@ public class WxMpGroupAPITest {
     Assert.assertEquals(res.getName(), "测试分组1");
   }
 
+  @Test
+  public void test() {
+    System.out.println("-----------");
+  }
+
   @Test(dependsOnMethods="testGroupCreate")
   public void testGroupGet() throws WxErrorException {
+    System.out.println("-------------");
     List<WxMpGroup> groupList = wxService.groupGet();
     Assert.assertNotNull(groupList);
     Assert.assertTrue(groupList.size() > 0);
